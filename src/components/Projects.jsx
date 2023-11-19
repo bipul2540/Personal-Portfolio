@@ -20,46 +20,44 @@ const ProjectCard = ({
 }) => {
   const tagColor = ["#044B7F", "#FE5D26", "#D80032", "#47E5BC"];
   return (
-    <Tilt className="xs:w-[250px] w-full">
-      <motion.div
-        variants={fadeIn("right", "spring", 0.5 * index, 0.74)}
-        className=" cursor-pointer w-full green-pink-gradient p-[2px] rounded-[20px] shadow-card"
+    <motion.div
+      variants={fadeIn("right", "spring", 0.5 * index, 0.74)}
+      className=" cursor-pointer w-full green-pink-gradient p-[2px] rounded-[20px] shadow-card max-w-[250px] relative"
+    >
+      <div
+        options={{ max: 45, scale: 1, speed: 450 }}
+        className="bg-tertiary rounded-[20px]  min-h-[280px] flex items-center flex-col"
       >
-        <div
-          options={{ max: 45, scale: 1, speed: 450 }}
-          className="bg-tertiary rounded-[20px]  min-h-[280px] flex items-center flex-col"
-        >
-          <img
-            src={snapshot}
-            alt={title}
-            className="w-full h-full object-contain rounded-tl-[20px] rounded-tr-[20px]"
-          />
-          <div className="w-full px-3 mt-3 mb-3">
-            <h3 className="text-white text-[16px] font-bold  ">{title}</h3>
+        <img
+          src={snapshot}
+          alt={title}
+          className="w-full h-[120px] object-cover rounded-tl-[20px] rounded-tr-[20px]"
+        />
+        <div className="w-full px-3 mt-3 mb-3">
+          <h3 className="text-white text-[16px] font-bold  ">{title}</h3>
 
-            <p className="text-[13px] mt-1">{description}</p>
-            <ul className="flex gap-1 flex-wrap text-[12px] mt-2">
-              {tags.map((tag, idx) => (
-                <li style={{ color: tagColor[idx] }}>{tag}</li>
-              ))}
-            </ul>
+          <p className="text-[13px] mt-1">{description}</p>
+          <ul className="flex gap-1 flex-wrap text-[12px] mt-2">
+            {tags.map((tag, idx) => (
+              <li style={{ color: tagColor[idx] }}>{tag}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <div className="absolute top-5 right-5">
+        <Link to={githubLink}>
+          <div className="w-7 h-7 flex items-center justify-center bg-tertiary rounded-full">
+            <FaGithub />
           </div>
-        </div>
-
-        <div className="absolute top-5 right-5">
-          <Link to={githubLink}>
-            <div className="w-7 h-7 flex items-center justify-center bg-tertiary rounded-full">
-              <FaGithub />
-            </div>
-          </Link>
-          <Link to={demo}>
-            <div className="w-7 h-7 flex items-center justify-center  bg-tertiary rounded-full mt-2">
-              <FaLaptopCode />
-            </div>
-          </Link>
-        </div>
-      </motion.div>
-    </Tilt>
+        </Link>
+        <Link to={demo}>
+          <div className="w-7 h-7 flex items-center justify-center  bg-tertiary rounded-full mt-2">
+            <FaLaptopCode />
+          </div>
+        </Link>
+      </div>
+    </motion.div>
   );
 };
 
